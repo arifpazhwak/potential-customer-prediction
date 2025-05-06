@@ -70,11 +70,15 @@ This project follows a standard data science workflow:
 
 ## Key Findings & Results
 
-* **Data Quality:** The dataset was clean, with no missing values or duplicate rows, simplifying the preprocessing stage.
-* **Lead Profile:** Leads are predominantly 'Professionals' (≈57%) or 'Unemployed' (≈31%), with a smaller 'Student' segment (≈12%). The age distribution shows peaks for younger adults and a larger peak for those in their 50s. Most leads have 'High' or 'Medium' profile completion.
-* **Engagement:** Website engagement metrics (`website_visits`, `time_spent_on_website`, `page_views_per_visit`) are highly right-skewed, indicating that while most leads have low engagement, a small group is highly engaged.
-* **Model Performance:** Decision Tree and Random Forest models were successfully trained and evaluated. Initial Decision Trees showed some tendency to overfit the training data, which basic tuning aimed to mitigate. The Random Forest model demonstrated potential, with further hyperparameter tuning likely to yield improved performance. *(Refer to `01_model_training_notebook.ipynb` or `02_model_output_summary.html` for detailed performance metrics for each model)*.
-* **Conversion Rate:** Approximately 29.9% of leads in the dataset converted.
+* **Data Quality:** The raw file had no missing values or duplicates. However, conversions made up just 29.9 % of all leads, creating a 70/30 class imbalance that shaped metric selection (Recall > Accuracy) and the choice to use class‑balanced models.
+* **Engagement Drives Conversion:** EDA revealed heavy right‑skew in behaviour features (e.g., page views per visit) and higher conversion odds for leads with High profile completion or repeated site visits—insights later confirmed by feature‑importance plots.
+* **Baseline Models Flagged Overfitting:**
+   * **Initial DT:** (max_depth = 5) reached 86 % accuracy / 0.77 Recall on converts.
+   * **Initial RF:** hit perfect train scores but slid to 85 % accuracy / 0.71 Recall on the test set—clear overfitting.
+* **Hyper‑tuning Lifted Recall by ~11 pp:** 
+   * **Tuned DT:** 84 % accuracy, 0.87 Recall, 0.69 Precision on converts.
+   * **Tuned RF:** 84 % accuracy, 0.88 Recall, 0.68 Precision, slashing false negatives from 121 → 48.
+* **Chosen Model – Tuned Random Forest:** With the highest Recall (88 %) and fewest missed converters (48), the tuned RF best meets ExtraaLearn’s goal of catching nearly nine out of ten potential customers while keeping precision and overall accuracy steady. These probabilities can now feed a lead‑scoring dashboard to focus sales outreach where it matters most.
 
 ## How to Use
 
