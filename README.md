@@ -1,4 +1,4 @@
-# potential-customer-prediction
+# lead-conversion-prediction-ensemble
 [![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/)
 [![Pandas](https://img.shields.io/badge/Pandas-Used-green.svg)](https://pandas.pydata.org/)
 [![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Used-orange.svg)](https://scikit-learn.org/)
